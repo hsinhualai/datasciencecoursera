@@ -5,7 +5,7 @@
 ## 4. Appropriately labels the data set with descriptive activity names.
 ## 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-## setwd("/Users/hsinhua/Desktop/Coursera/Getting and Cleaning Data/Course-Project")
+setwd("/Users/hsinhua/Desktop/Coursera/Getting and Cleaning Data/Course-Project")
 
 if (!require("data.table")) {
         install.packages("data.table")
@@ -125,4 +125,4 @@ datamelt <- melt(data, id = c("Subject_ID", "Activity"),
                  measure.vars = names(data)[-(1:2)])
 tidy_data <- dcast(datamelt, Subject_ID + Activity ~ variable, mean)
 
-write.table(tidy_data, file = "./tidy_data.txt")
+write.table(tidy_data, file = "./tidy_data.txt", row.name = FALSE)
