@@ -56,43 +56,161 @@ For each record it is provided:
 - An identifier of the subject who carried out the experiment.
 
 # The variables (column names) in the tidy_data 
-There are 81 variables (column names).
+There are 68 variables (column names).
 
- - 'ID': The IDentification numbers ( ranging from 1 to 30) for the 30 volunteers 
+ - 'Subject_ID': Subject IDentification numbers ( ranging from 1 to 30) for the 30 volunteers 
 
  - 'Activity': Activity Labels--LAYING, SITTING, STANDING, WALKING, WALKING_DOWNSTAIRS, AND WALKING_UPSTAIRS in alphabetical order 
  
-The rest of 79 variables include the mean values (mean) and the standard deviation (std) of the following list
+The rest of 66 variables include the mean values (Mean) and the standard deviation (STD) of the following list
 
-- 'tBodyAcc-XYZ' : The body acceleration signals
-- 'tGravityAcc-XYZ': The gravity acceleration signalsJerk signals 
-- 'tBodyAccJerk-XYZ': The body acceleration Jerk signal
-- 'tBodyGyroJerk-XYZ': The body gyro Jerk signal 
-- 'tBodyAccMag': Euclidean norm 
-- 'tGravityAccMag': Euclidean norm 
-- 'tBodyAccJerkMag': Euclidean norm 
-- 'tBodyGyroMag': Euclidean norm 
-- 'tBodyGyroJerkMag': Euclidean norm 
-- 'fBodyAcc-XYZ': Signals from applying Fast Fourier Transform (FFT) of 'tBodyAcc-XYZ'
-- 'fBodyAccJerk-XYZ':  Signals from applying Fast Fourier Transform (FFT) of 'tBodyAccJerk-XYZ'
-- 'fBodyGyro-XYZ':  Signals from applying Fast Fourier Transform (FFT) of 'tBodyGyro-XYZ'
-- 'fBodyAccJerkMag':  Signals from applying Fast Fourier Transform (FFT) of 'tBodyAccJerkMag'
-- 'fBodyGyroMag':  Signals from applying Fast Fourier Transform (FFT) of 'tBodyGyroMag'
-- 'fBodyGyroJerkMag':  Signals from applying Fast Fourier Transform (FFT) of 'tBodyGyroJerkMag'
+- 'Time_Body_Accelerometer_Mean_X' : Mean of body acceleration signals along X
+
+- 'Time_Body_Accelerometer_Mean_Y' : Mean of body acceleration signals along Y
+
+- 'Time_Body_Accelerometer_Mean_Z' : Mean of body acceleration signals along Z
+
+- 'Time_Gravity_Accelerometer_Mean_X': Mean of gravity acceleration signalsJerk signals along X
+
+- 'Time_Gravity_Accelerometer_Mean_Y': Mean of gravity acceleration signalsJerk signals along Y
+
+- 'Time_Gravity_Accelerometer_Mean_Z': Mean of gravity acceleration signalsJerk signals along Z
+
+- 'Time_Body_Accelerometer_Jerk_Mean_X': Mean of body acceleration Jerk signal along X
+
+- 'Time_Body_Accelerometer_Jerk_Mean_Y': Mean of body acceleration Jerk signal along Y
+
+- 'Time_Body_Accelerometer_Jerk_Mean_Z': Mean of body acceleration Jerk signal along Z
+
+- 'Time_Body_Gyroscope_Mean_X': Mean of The body gyroscope signal along X
+
+- 'Time_Body_Gyroscope_Mean_Y': Mean of The body gyroscope signal along Y
+
+- 'Time_Body_Gyroscope_Mean_Z': Mean of The body gyroscope signal along Z
+
+- 'Time_Body_Gyroscope_Jerk_Mean_X': Mean of The body gyroscope Jerk signal along X
+
+- 'Time_Body_Gyroscope_Jerk_Mean_Y': Mean of The body gyroscope Jerk signal along Y
+
+- 'Time_Body_Gyroscope_Jerk_Mean_Z': Mean of The body gyroscope Jerk signal along Z
+
+- 'Time_Body_Accelerometer_Magnitude_Mean': Mean of time body accelerometer magnetide (Euclidean norm)
+
+- 'Time_Gravity_Accelerometer_Magnitude_Mean' : Mean of  time body accelerometer magnetide (Euclidean norm)
+
+- 'Time_Body_Accelerometer_Jerk_Magnitude_Mean' : Mean of time body accelerometer Jerk Magnitude (Euclidean norm)
+
+- 'Time_Body_Gyroscope_Magnitude_Mean' : Mean of time body gyroscope magnitude (Euclidean norm) 
+
+- 'Time_Body_Gyroscope_Jerk_Magnitude_Mean': Mean of time body gyroscope Jerk magnitude (Euclidean norm)
+
+- 'Time_Body_Accelerometer_STD_X' : STD of body acceleration signals along X
+
+- 'Time_Body_Accelerometer_STD_Y' : STD of body acceleration signals along Y
+
+- 'Time_Body_Accelerometer_STD_Z' : STD of body acceleration signals along Z
+
+- 'Time_Gravity_Accelerometer_STD_X': STD of gravity acceleration signalsJerk signals along X
+
+- 'Time_Gravity_Accelerometer_STD_Y': STD of gravity acceleration signalsJerk signals along Y
+
+- 'Time_Gravity_Accelerometer_STD_Z': STD of gravity acceleration signalsJerk signals along Z
+
+- 'Time_Body_Accelerometer_Jerk_STD_X': STD of body acceleration Jerk signal along X
+
+- 'Time_Body_Accelerometer_Jerk_STD_Y': STD of body acceleration Jerk signal along Y
+
+- 'Time_Body_Accelerometer_Jerk_STD_Z': STD of body acceleration Jerk signal along Z
+
+- 'Time_Body_Gyroscope_STD_X': STD of The body gyroscope signal along X
+
+- 'Time_Body_Gyroscope_STD_Y': STD of The body gyroscope signal along Y
+
+- 'Time_Body_Gyroscope_STD_Z': STD of The body gyroscope signal along Z
+
+- 'Time_Body_Gyroscope_Jerk_STD_X': STD of The body gyroscope Jerk signal along X
+
+- 'Time_Body_Gyroscope_Jerk_STD_Y': STD of The body gyroscope Jerk signal along Y
+
+- 'Time_Body_Gyroscope_Jerk_STD_Z': STD of The body gyroscope Jerk signal along Z
+
+- 'Time_Body_Accelerometer_Magnitude_STD': STD of time body accelerometer magnetide (Euclidean norm)
+
+- 'Time_Gravity_Accelerometer_Magnitude_STD' : STD of  time body accelerometer magnetide (Euclidean norm)
+
+- 'Time_Body_Accelerometer_Jerk_Magnitude_STD' : STD of time body accelerometer Jerk Magnitude (Euclidean norm)
+
+- 'Time_Body_Gyroscope_Magnitude_STD' : STD of time body gyroscope magnitude (Euclidean norm) 
+
+- 'Time_Body_Gyroscope_Jerk_Magnitude_STD': STD of time body gyroscope Jerk magnitude (Euclidean norm)
+
+- 'Frequency_Body_Accelerometer_Mean_X' : Mean of body accelerometer signal along X in the Frequency domain
+
+- 'Frequency_Body_Accelerometer_Mean_Y' : Mean of body accelerometer signal along Y in the Frequency domain
+
+- 'Frequency_Body_Accelerometer_Mean_Z' : Mean of body accelerometer signal along Z in the Frequency domain
+
+- 'Frequency_Body_Accelerometer_Jerk_Mean_X':  Mean of body accelerometer Jerk signal along X in the Frequency domain
+
+- 'Frequency_Body_Accelerometer_Jerk_Mean_Y':  Mean of body accelerometer Jerk signal along Y in the Frequency domain
+
+- 'Frequency_Body_Accelerometer_Jerk_Mean_Z':  Mean of body accelerometer Jerk signal along Z in the Frequency domain
+
+- 'Frequency_Body_Gyroscope_Mean_X':  Mean of body gyroscope signal along X in Frequency domain 
+
+- 'Frequency_Body_Gyroscope_Mean_Y':  Mean of body gyroscope signal along Y in Frequency domain 
+
+- 'Frequency_Body_Gyroscope_Mean_Z':  Mean of body gyroscope signal along Z in Frequency domain 
+
+- 'Frequency_Body_Accelerometer_Magnitude_Mean' : Mean of body accelerometer signal magnitude (Euclidean norm) in the Frequency domain
+
+- 'Frequency_Body_Accelerometer_Jerk_Magnitude_Mean' : Mean of body accelerometer Jerk signal magnitude (Euclidean norm) in the Frequency domain
+
+- 'Frequency_Body_Gyroscope_Magnitude_Mean' : Mean of body gyroscope signal magnitude (Eulidean norm) in the Frequency domain
+
+- 'Frequency_Body_Gyroscope_Jerk_Magnitude_Mean' : Mean of boy gyroscope Jerk signal magnitude (Euclidean norm) in the Frequency domain 
+
+- 'Frequency_Body_Accelerometer_STD_X' : STD of body accelerometer signal along X in the Frequency domain
+
+- 'Frequency_Body_Accelerometer_STD_Y' : STD of body accelerometer signal along Y in the Frequency domain
+
+- 'Frequency_Body_Accelerometer_STD_Z' : STD of body accelerometer signal along Z in the Frequency domain
+
+- 'Frequency_Body_Accelerometer_Jerk_STD_X':  STD of body accelerometer Jerk signal along X in the Frequency domain
+
+- 'Frequency_Body_Accelerometer_Jerk_STD_Y':  STD of body accelerometer Jerk signal along Y in the Frequency domain
+
+- 'Frequency_Body_Accelerometer_Jerk_STD_Z':  STD of body accelerometer Jerk signal along Z in the Frequency domain
+
+- 'Frequency_Body_Gyroscope_STD_X':  STD of body gyroscope signal along X in Frequency domain 
+
+- 'Frequency_Body_Gyroscope_STD_Y':  STD of body gyroscope signal along Y in Frequency domain 
+
+- 'Frequency_Body_Gyroscope_STD_Z':  STD of body gyroscope signal along Z in Frequency domain 
+
+- 'Frequency_Body_Accelerometer_Magnitude_STD' : STD of body accelerometersignal  magnitude (Euclidean norm) in the Frequency domain
+
+- 'Frequency_Body_Accelerometer_Jerk_Magnitude_STD' : STD of body accelerometer Jerk signal magnitude (Euclidean norm) in the Frequency domain
+
+- 'Frequency_Body_Gyroscope_Magnitude_STD' : STD of body gyroscope signal magnitude (Eulidean norm) in the Frequency domain
+
+- 'Frequency_Body_Gyroscope_Jerk_Magnitude_STD' : STD of boy gyroscope Jerk signal magnitude (Euclidean norm) in the Frequency domain 
 
 ## The detailed procedure in run_analysis.R
 1. We use data.table and reshape2 library.
 
-2. We first focus on the test folder and load the subject ID list, Activity list (y_test), test results (X_test), the column names for the test_restuls (features), and the activity label (Act_Label).
+2. We first focus on the test folder and load the Subject_ID list, Activity list (y_test), test results (X_test), the column names for the test_restuls (features), and the activity label (Act_Label).
 
-3. After assigning each column its proper column name, we use cbind to column combine the test data.
+3. After assigning each column its column name, we use cbind to column combine the test data.
 
 4. Repeat the same procedure for the train data.
 
-5. Use rbind to row combine the test and train data
+5. Use rbind to row-combine the test and train data to give a merged data
 
-6. In order to calculate the average of each activity for each ID, we use melt to form a long data table whose id = "ID", "Activity", and the rest of teh columns are variables
+6. We give each feature columns their 'descriptive' names before calculating the required averages
 
-7. We then use dcast to bring the long data table back to the usual form along with calculating the average of each variable for each activity and each subject.
+7. In order to calculate the average of each activity for each Subject_ID, we use melt to form a long data table whose id = "Subject_ID", "Activity", and the rest of teh columns are variables
 
-8. We finally export the tidy_data.txt
+8. We then use dcast to bring the long data table back to the usual form along with calculating the average of each variable for each activity and each subject.
+
+9. We export the tidy_data.txt

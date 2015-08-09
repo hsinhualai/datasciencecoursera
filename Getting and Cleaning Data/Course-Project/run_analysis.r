@@ -5,7 +5,7 @@
 ## 4. Appropriately labels the data set with descriptive activity names.
 ## 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-#setwd("/Users/hsinhua/Desktop/Coursera/Getting and Cleaning Data/Course-Project")
+## setwd("/Users/hsinhua/Desktop/Coursera/Getting and Cleaning Data/Course-Project")
 
 if (!require("data.table")) {
         install.packages("data.table")
@@ -47,7 +47,7 @@ Act_Label <- read.table("./UCI HAR Dataset/activity_labels.txt")[,2]
 y_test <- as.data.frame(Act_Label[y_test])
 
 ## Now we assign column names for subject_testID and y_test
-names(subject_testID) <- "ID"
+names(subject_testID) <- "Subject_ID"
 names(y_test) <- "Activity"
 
 ## Let's column combine the ID column, Activity column, and all feature columns
@@ -76,12 +76,12 @@ names(X_train) <- features
 y_train <- as.data.frame(Act_Label[y_train])
 
 ## Now we assign column names for subject_trainID and y_train
-names(subject_trainID) <- "ID"
+names(subject_trainID) <- "Subject_ID"
 names(y_train) <- "Activity"
 
 ## Note that for train and test data have the same column names
 
-## Let's column combine the ID column, Activity column, and all feature columns
+## Let's column combine the Subject_ID column, Activity column, and all feature columns
 
 train_data <- cbind(subject_trainID, y_train, X_train)
 
@@ -91,18 +91,38 @@ data <- rbind(test_data, train_data)
 
 ## Now we select the columns we need for the course project
 ## and rename data
-data <- data[, grep("mean|std|ID|Activity", names(data))]
+data <- data[, grep("mean|std|Subject_ID|Activity", names(data))]
+
+## We don't want meanFreq columns, so below we get rid of them
+data <- data[, - grep("meanFreq", names(data))]
+
+## We have all the data we need. Before giving the required averages
+## we first give descriptive names to the "features" columns
+names(data)<-gsub("Acc", "Accelerometer_", names(data))
+names(data)<-gsub("Gyro", "Gyroscope_", names(data))
+names(data)<-gsub("BodyBody", "Body", names(data))
+names(data)<-gsub("Mag", "Magnitude_", names(data))
+names(data)<-gsub("fBody", "Frequency_Body_", names(data))
+names(data)<-gsub("tBody", "Time_Body_", names(data))
+names(data)<-gsub("-mean\\()", "Mean", names(data))
+names(data)<-gsub("Jerk", "Jerk_", names(data))
+names(data)<-gsub("-std\\()", "STD", names(data))
+names(data)<-gsub("tGravity", "Time_Gravity_", names(data))
+names(data)<-gsub("-X", "_X", names(data))
+names(data)<-gsub("-Y", "_Y", names(data))
+names(data)<-gsub("-Z", "_Z", names(data))
+
 
 
 ## The tricky part is how to creates an independent tidy data set 
 ## with the "average of each variable for each activity and each subject
 ## The simplest way is to melt the data to form a long data frame
-## with column ID, Activity, + other column names as the variable
+## with column Subject_ID, Activity, + other column names as the variable
 ## The we use dcast to obtain the data frame along with calculating the 
 ## average we want
 
-datamelt <- melt(data, id = c("ID", "Activity"),
+datamelt <- melt(data, id = c("Subject_ID", "Activity"),
                  measure.vars = names(data)[-(1:2)])
-tidy_data <- dcast(datamelt, ID + Activity ~ variable, mean)
+tidy_data <- dcast(datamelt, Subject_ID + Activity ~ variable, mean)
 
 write.table(tidy_data, file = "./tidy_data.txt")
