@@ -197,17 +197,17 @@ The rest of 66 variables include the mean values (Mean) and the standard deviati
 - **'Frequency_Body_Gyroscope_Jerk_Magnitude_STD':** STD of boy gyroscope Jerk signal magnitude (Euclidean norm) in the Frequency domain 
 
 ## The detailed procedure in run_analysis.R
-1. We use data.table and reshape2 library.
+1. We use data.table and reshape2 packages.
 
-2. We first focus on the test folder and load the Subject_ID list, Activity list (y_test), test results (X_test), the column names for the test_restuls (features), and the activity label (Act_Label).
+2. We first focus on the test folder in the 'UCI HAR Dataset' folder and load the Subject_ID list (subject_test.txt), Activity list (y_test.txt), test results (X_test.txt), the column names for the test_restuls (features), and the activity label (Act_Label).
 
-3. After assigning each column its column name, we use cbind to column combine the test data.
+3. After assigning each column its column name, we use cbind to column-combine the test data. The column names of the test data are 'Subject_ID +  Activity + list of features'
 
 4. Repeat the same procedure for the train data.
 
 5. Use rbind to row-combine the test and train data to give a merged data
 
-6. We give each feature columns their 'descriptive' names before calculating the required averages
+6. We rename each features' column name  a more 'descriptive' name before calculating the required averages
 
 7. In order to calculate the average of each activity for each Subject_ID, we use melt to form a long data table whose id = "Subject_ID", "Activity", and the rest of teh columns are variables
 
