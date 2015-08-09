@@ -1,0 +1,449 @@
+depart
+arrive <- depart + hours(15) + minutes(50)
+?with_tz()
+?with_tz
+with_tz(arrive, "Asia/Hong_Kong")
+arrive <- with_tz(arrive, "Asia/Hong_Kong")
+arrive
+last_time <- mdy("June 18, 2008", tz = "Singapore")
+last_time <- mdy("June 17, 2008", tz = "Singapore")
+last_time
+?new_interval
+how_long <- new_interval(last_time, arrive)
+as.period(how_long)
+stopwatch()
+x <- c("a", "ab", "abc", "a", "ab", "c")
+grep("a",x)
+grep("ab",x)
+grep("ab",x, value=TRUE)
+q()
+dir()
+read.table("tidy_data.txt")
+tidydata <- read.table("tidy_data.txt")
+names(tidydata)
+dim(tidydata)
+head(tidydata)
+tidydata[,1]
+tidydata[,2]
+tidydata[,1]
+ls
+dir()
+ActLabels  <- read.table("./UCI HAR Dataset/activity_labels.txt")
+features <- read.table("./UCI HAR Dataset/features.txt")
+ActLabels
+features
+ActLabels
+ActLabels <- ActLabels[,2]
+features <- features[,2]
+ActLabels
+features
+Subfeatures <- grep("mean|std", features)
+Subfeatures
+Subfeatures <- grep("mean|std", features, value = TRUE)
+Subfeatures
+Subfeatures <- grepl("mean|std", features, value = TRUE)
+Subfeatures <- grepl("mean|std", features)
+Subfeatures
+fetures[, Subfeatures]
+fetures[, Subfeature]
+features[, Subfeature]
+features[Subfeature]
+features[Subfeature,]
+features[Subfeatures,]
+features[Subfeatures]
+Subfeatures <- grep("mean|std", features, value = TRUE)
+features[Subfeatures]
+Subfeatures
+X_test <- read.table("./UCI HAR Dataset/test/X_test.txt")
+y_test <- read.table("./UCI HAR Dataset/test/y_test.txt")
+subject_test <- read.table("./UCI HAR Dataset/test/subject_test.txt")
+features
+X_test
+dim(X_test)
+dim(features)
+length(features)
+names(X_test) = features
+X_test[, Subfeatures]
+X_test <- X_test[, Subfeatures]
+names(X_test)
+X_test
+head(X_test)
+y_test
+y_test[,1]
+y_test[,2]
+y_test <- data.table(Activity_ID = y_test[,1], Activity_Label = ActLabels[y_test[,1]])
+library(data.table)
+y_test <- data.table(Activity_ID = y_test[,1], Activity_Label = ActLabels[y_test[,1]])
+head(y_test)
+dim(y_test)
+subject_test
+name(subject_test) = "subject"
+names(subject_test)  <-  "subject"
+head(subject)
+head(subject_test)
+test_data <- cbind(as.data.table(subject_test), y_test, X_test)
+head(test_data)
+dim(test_data)
+test_data[,1]
+test_data[,2]
+test_data[,3]
+test_data[,4]
+test_data[1,]
+test_data[2,]
+test_data
+head(test_data)
+dim(test_data)
+names(test_data)
+test_data[,1]
+test_data[1,]
+class(test.data)
+class(test_data)
+test_data[1]
+test_data[2]
+test_data[3]
+test_data[4]
+test_data[,c(1,2)]
+test_data[c(1,2)]
+test_data[1:10]
+dir()
+file <- read.table("tidy_data.txt")
+head(file)
+dim(file)
+file[,1]
+file <- read.table("tidy_data.txt")
+file[,1]
+head(file)
+require("data.table")
+as.logic(library("data.table"))
+as.logics(library("data.table"))
+?logic
+as.logical(library("data.table"))
+isTRUE(library("data.table"))
+isTRUE(!library("data.table"))
+isTRUE(require("data.table"))
+subject_testID <- read.table("./UCI HAR Dataset/test/subject_test.txt")
+subject_testID
+subject_testID[,1]
+X_test <- read.table("./UCI HAR Dataset/test/X_test.txt")
+X_test
+head(X_test)
+y_test <- read.table("./UCI HAR Dataset/test/y_test.txt")
+head(y_test)
+features <- read.table("./UCI HAR Dataset/features.txt")
+features
+features[,1]
+features[,2]
+dim(X_test)
+features
+features <- read.table("./UCI HAR Dataset/features.txt")[,2]
+features
+names(X_test) <- features
+names(X_test)
+y_test
+Act_Label <- read.table("./UCI HAR Dataset/activity_labels.txt")
+Act_Label
+Act_Label <- read.table("./UCI HAR Dataset/activity_labels.txt")[,2]
+Act_Label
+y_test <- Act_Label[y_test]
+y_test
+X_test
+y_test[,2]
+y_test[,1]
+y_test <- Act_Label[y_test[,1]]
+y_test
+y_test
+names(subject_testID) <- "ID"#
+names(y_test) <- "Activity"#
+#
+## Let's column combine the ID column, Activity column, and all feature columns#
+#
+test_data <- cbind(subject_testID, y_test, X_test)
+head(test_data)
+names(test_data)
+test_data[,1]
+test_data[,2]
+test_data[,3]
+## Import the subject IDs for trains#
+subject_trainID <- read.table("./UCI HAR Dataset/train/subject_train.txt")#
+#
+## Import the training results#
+X_train <- read.table("./UCI HAR Dataset/train/X_train.txt")#
+#
+## Import the activity test for each train subject labeled from 1 - 6 #
+y_train <- read.table("./UCI HAR Dataset/train/y_train.txt")[,1]#
+#
+## Now in order to make tidy data, we need the "column names"#
+## The column names for train results are given in features.txt#
+#
+## Now let's assign the "column names" to the train results#
+names(X_train) <- features#
+#
+## We prefer the activity names instead of the number label#
+## We rewrite y_train#
+y_train <- Act_Label[y_train]#
+#
+## Now we assign column names for subject_trainID and y_train#
+names(subject_trainID) <- "ID"#
+names(y_train) <- "Activity"#
+#
+## Note that for train and test data have the same column names#
+#
+## Let's column combine the ID column, Activity column, and all feature columns#
+#
+train_data <- cbind(subject_trainID, y_train, X_train)
+names(train_data)
+names(test_data)
+y_test
+class(y_test)
+names(y_test)
+y_test <- data.table(y_test)
+y_test
+head(y_test)
+head(y_test,20)
+class(y_test)
+names(y_test) <- "Activity"
+head(y_test)
+names(y_test) = "Activity"
+y_test <- data.frame(y_test)
+head(y)test
+head(y_test)
+names(y_test) <- "test"
+y_test
+head(y_test)
+as.data.frame(y_test)
+class(y_test)
+as.data.table(y_test)
+as.data.frame(y_test)
+## Create one R script called run_analysis.R that does the following:#
+## 1. Merges the training and the test sets to create one data set.#
+## 2. Extracts only the measurements on the mean and standard deviation for each measurement.#
+## 3. Uses descriptive activity names to name the activities in the data set#
+## 4. Appropriately labels the data set with descriptive activity names.#
+## 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.#
+setwd("/Users/hsinhua/Desktop/Coursera/Getting and Cleaning Data/Course-Project")#
+if (!require("data.table")) {#
+        install.packages("data.table")#
+}#
+#
+if (!require("reshape2")) {#
+        install.packages("reshape2")#
+}#
+#
+library("data.table")#
+library("reshape2")#
+#
+## Let's first read the data in the test foler#
+#
+## Import the subject IDs for tests#
+subject_testID <- read.table("./UCI HAR Dataset/test/subject_test.txt")#
+#
+## Import the test results#
+X_test <- read.table("./UCI HAR Dataset/test/X_test.txt")#
+#
+## Import the activity test for each test subject labeled from 1 - 6 #
+y_test <- read.table("./UCI HAR Dataset/test/y_test.txt")[,1]#
+#
+## Now in order to make tidy data, we need the "column names"#
+## The column names for test results are given in features.txt#
+## Import features as the column names for the test results data#
+features <- read.table("./UCI HAR Dataset/features.txt")[,2]#
+#
+## Now let's assign the "column names" to the test results#
+names(X_test) <- features#
+#
+## We prefer the activity names instead of the number label#
+## We reexpress y_test in terms of actual activity names#
+## Import the activity label#
+Act_Label <- read.table("./UCI HAR Dataset/activity_labels.txt")[,2]#
+#
+## Nowe we have the activity labels as a list#
+## We rewrite y_test#
+y_test <- as.data.frame(Act_Label[y_test])#
+#
+## Now we assign column names for subject_testID and y_test#
+names(subject_testID) <- "ID"#
+names(y_test) <- "Activity"#
+#
+## Let's column combine the ID column, Activity column, and all feature columns#
+#
+test_data <- cbind(subject_testID, y_test, X_test)#
+#
+## Now we simply repeat the same procedue to construct the train_data#
+#
+## Import the subject IDs for trains#
+subject_trainID <- read.table("./UCI HAR Dataset/train/subject_train.txt")#
+#
+## Import the training results#
+X_train <- read.table("./UCI HAR Dataset/train/X_train.txt")#
+#
+## Import the activity test for each train subject labeled from 1 - 6 #
+y_train <- read.table("./UCI HAR Dataset/train/y_train.txt")[,1]#
+#
+## Now in order to make tidy data, we need the "column names"#
+## The column names for train results are given in features.txt#
+#
+## Now let's assign the "column names" to the train results#
+names(X_train) <- features#
+#
+## We prefer the activity names instead of the number label#
+## We rewrite y_train#
+y_train <- as.data.frame(Act_Label[y_train])#
+#
+## Now we assign column names for subject_trainID and y_train#
+names(subject_trainID) <- "ID"#
+y_train <- data.table(y_train)#
+names(y_train) <- "Activity"#
+#
+## Note that for train and test data have the same column names#
+#
+## Let's column combine the ID column, Activity column, and all feature columns#
+#
+train_data <- cbind(subject_trainID, y_train, X_train)
+## Create one R script called run_analysis.R that does the following:#
+## 1. Merges the training and the test sets to create one data set.#
+## 2. Extracts only the measurements on the mean and standard deviation for each measurement.#
+## 3. Uses descriptive activity names to name the activities in the data set#
+## 4. Appropriately labels the data set with descriptive activity names.#
+## 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.#
+setwd("/Users/hsinhua/Desktop/Coursera/Getting and Cleaning Data/Course-Project")#
+if (!require("data.table")) {#
+        install.packages("data.table")#
+}#
+#
+if (!require("reshape2")) {#
+        install.packages("reshape2")#
+}#
+#
+library("data.table")#
+library("reshape2")#
+#
+## Let's first read the data in the test foler#
+#
+## Import the subject IDs for tests#
+subject_testID <- read.table("./UCI HAR Dataset/test/subject_test.txt")#
+#
+## Import the test results#
+X_test <- read.table("./UCI HAR Dataset/test/X_test.txt")#
+#
+## Import the activity test for each test subject labeled from 1 - 6 #
+y_test <- read.table("./UCI HAR Dataset/test/y_test.txt")[,1]#
+#
+## Now in order to make tidy data, we need the "column names"#
+## The column names for test results are given in features.txt#
+## Import features as the column names for the test results data#
+features <- read.table("./UCI HAR Dataset/features.txt")[,2]#
+#
+## Now let's assign the "column names" to the test results#
+names(X_test) <- features#
+#
+## We prefer the activity names instead of the number label#
+## We reexpress y_test in terms of actual activity names#
+## Import the activity label#
+Act_Label <- read.table("./UCI HAR Dataset/activity_labels.txt")[,2]#
+#
+## Nowe we have the activity labels as a list#
+## We rewrite y_test#
+y_test <- as.data.frame(Act_Label[y_test])#
+#
+## Now we assign column names for subject_testID and y_test#
+names(subject_testID) <- "ID"#
+names(y_test) <- "Activity"#
+#
+## Let's column combine the ID column, Activity column, and all feature columns#
+#
+test_data <- cbind(subject_testID, y_test, X_test)#
+#
+## Now we simply repeat the same procedue to construct the train_data#
+#
+## Import the subject IDs for trains#
+subject_trainID <- read.table("./UCI HAR Dataset/train/subject_train.txt")#
+#
+## Import the training results#
+X_train <- read.table("./UCI HAR Dataset/train/X_train.txt")#
+#
+## Import the activity test for each train subject labeled from 1 - 6 #
+y_train <- read.table("./UCI HAR Dataset/train/y_train.txt")[,1]#
+#
+## Now in order to make tidy data, we need the "column names"#
+## The column names for train results are given in features.txt#
+#
+## Now let's assign the "column names" to the train results#
+names(X_train) <- features#
+#
+## We prefer the activity names instead of the number label#
+## We rewrite y_train#
+y_train <- as.data.frame(Act_Label[y_train])#
+#
+## Now we assign column names for subject_trainID and y_train#
+names(subject_trainID) <- "ID"#
+names(y_train) <- "Activity"#
+#
+## Note that for train and test data have the same column names#
+#
+## Let's column combine the ID column, Activity column, and all feature columns#
+#
+train_data <- cbind(subject_trainID, y_train, X_train)
+names(test_data)
+names(train_data)
+test_data[,1]
+test_data[,2]
+train_data[,2]
+test_data[,2]
+class(train_data)
+merge(test_data, tran_data)
+check <- merge(test_data, train_data)
+check <- merge(test_data, train_data, all = TRUE)
+?merge
+intersect(names(test.data), names(train.data))
+intersect(names(test_data), names(train_data))
+dim(test_data)
+dim(train_data
+)
+intersect(names(test_data), names(train_data))
+names(train_data)
+names(test_data)
+names(train_data)
+intersect(names(X_test), names(X_train))
+names(y_test)
+names(X_test)
+names(X_train)
+intersect(names(X_test), names(X_train))
+data <- rbind(test_data, train_data)
+dim(data)
+names(data)
+grep("mean|std", ,names(data))
+grep("mean|std", names(data))
+grep("mean|std", names(data), value = TRUE)
+grep("mean|std", names(data),)
+grep("mean|std", names(data))
+data[,grep("mean|std", names(data))] -> data
+names(data)
+head(data)
+dim(data)
+names(data)
+data <- rbind(test_data, train_data)
+names(data)
+data[,grep("mean|std|ID|Activity", names(data))] -> data
+dim(data)
+names(data)
+data[,1]
+arrange[data, ID]
+library(dplyr)
+arrange[data, ID]
+data
+head(data)
+names(data)
+head(select(data,1:5))
+head(arrange(data, ID))
+data <- arrange(data, ID)
+data[,1]
+names(data)
+datamelt <- melt(data, id = c("ID", "Activity"), measure.vars = names(data)[-1:2])
+datamelt <- melt(data, id = c("ID", "Activity"), measure.vars = names(data)[-(1:2)])
+head(datamelt)
+tail(datamelt)
+tidy_data <- dcast(datamelt, ID + Activity ~ variable, mean)
+head(tidy_data)
+head(tidy_data[,1])
+head(tidy_data[,2])
+q()
