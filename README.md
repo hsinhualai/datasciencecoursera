@@ -1,2 +1,2 @@
 # datasciencecoursera
-Course project for The Data Sciencetist's Toolbox
+Tiny steps toward data specialization
