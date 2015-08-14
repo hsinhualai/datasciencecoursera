@@ -1,6 +1,6 @@
 # CODEBOOK FOR RUN.ANALYSIS.R PROGRAM
 
-This code book describeds the variables, the data, and any transformations or working that you performed to clean up the data
+This code book describes the variables, the data, and any transformations or working that you performed to clean up the data
   
 ## The data source for the project
 The data source is from the link https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
@@ -94,9 +94,9 @@ The rest of 66 variables include the mean values (Mean) and the standard deviati
 
 - **'Time_Body_Gyroscope_Jerk_Mean_Z':** Mean of The body gyroscope Jerk signal along Z
 
-- **'Time_Body_Accelerometer_Magnitude_Mean':** Mean of time body accelerometer magnetide (Euclidean norm)
+- **'Time_Body_Accelerometer_Magnitude_Mean':** Mean of time body accelerometer magnitude (Euclidean norm)
 
-- **'Time_Gravity_Accelerometer_Magnitude_Mean':** Mean of  time body accelerometer magnetide (Euclidean norm)
+- **'Time_Gravity_Accelerometer_Magnitude_Mean':** Mean of  time body accelerometer magnetite (Euclidean norm)
 
 - **'Time_Body_Accelerometer_Jerk_Magnitude_Mean':** Mean of time body accelerometer Jerk Magnitude (Euclidean norm)
 
@@ -134,9 +134,9 @@ The rest of 66 variables include the mean values (Mean) and the standard deviati
 
 - **'Time_Body_Gyroscope_Jerk_STD_Z':**STD of The body gyroscope Jerk signal along Z
 
-- **'Time_Body_Accelerometer_Magnitude_STD':**STD of time body accelerometer magnetide (Euclidean norm)
+- **'Time_Body_Accelerometer_Magnitude_STD':**STD of time body accelerometer magnitude (Euclidean norm)
 
-- **'Time_Gravity_Accelerometer_Magnitude_STD':** STD of  time body accelerometer magnetide (Euclidean norm)
+- **'Time_Gravity_Accelerometer_Magnitude_STD':** STD of time body accelerometer magnitude (Euclidean norm)
 
 - **'Time_Body_Accelerometer_Jerk_Magnitude_STD':** STD of time body accelerometer Jerk Magnitude (Euclidean norm)
 
@@ -166,9 +166,9 @@ The rest of 66 variables include the mean values (Mean) and the standard deviati
 
 - **'Frequency_Body_Accelerometer_Jerk_Magnitude_Mean':** Mean of body accelerometer Jerk signal magnitude (Euclidean norm) in the Frequency domain
 
-- **'Frequency_Body_Gyroscope_Magnitude_Mean':** Mean of body gyroscope signal magnitude (Eulidean norm) in the Frequency domain
+- **'Frequency_Body_Gyroscope_Magnitude_Mean':** Mean of body gyroscope signal magnitude (Euclidean norm) in the Frequency domain
 
-- **'Frequency_Body_Gyroscope_Jerk_Magnitude_Mean':** Mean of boy gyroscope Jerk signal magnitude (Euclidean norm) in the Frequency domain 
+- **'Frequency_Body_Gyroscope_Jerk_Magnitude_Mean':** Mean of body gyroscope Jerk signal magnitude (Euclidean norm) in the Frequency domain 
 
 - **'Frequency_Body_Accelerometer_STD_X':** STD of body accelerometer signal along X in the Frequency domain
 
@@ -188,13 +188,13 @@ The rest of 66 variables include the mean values (Mean) and the standard deviati
 
 - **'Frequency_Body_Gyroscope_STD_Z':** STD of body gyroscope signal along Z in Frequency domain 
 
-- **'Frequency_Body_Accelerometer_Magnitude_STD':** STD of body accelerometersignal  magnitude (Euclidean norm) in the Frequency domain
+- **'Frequency_Body_Accelerometer_Magnitude_STD':** STD of body accelerometer signal magnitude (Euclidean norm) in the Frequency domain
 
 - **'Frequency_Body_Accelerometer_Jerk_Magnitude_STD':** STD of body accelerometer Jerk signal magnitude (Euclidean norm) in the Frequency domain
 
-- **'Frequency_Body_Gyroscope_Magnitude_STD':** STD of body gyroscope signal magnitude (Eulidean norm) in the Frequency domain
+- **'Frequency_Body_Gyroscope_Magnitude_STD':** STD of body gyroscope signal magnitude (Euclidean norm) in the Frequency domain
 
-- **'Frequency_Body_Gyroscope_Jerk_Magnitude_STD':** STD of boy gyroscope Jerk signal magnitude (Euclidean norm) in the Frequency domain 
+- **'Frequency_Body_Gyroscope_Jerk_Magnitude_STD':** STD of body gyroscope Jerk signal magnitude (Euclidean norm) in the Frequency domain 
 
 ## The detailed procedure in run_analysis.R
 1. We use data.table and reshape2 packages.
@@ -209,7 +209,7 @@ The rest of 66 variables include the mean values (Mean) and the standard deviati
 
 6. We rename each features' column name  a more 'descriptive' name before calculating the required averages
 
-7. In order to calculate the average of each activity for each Subject_ID, we use melt to form a long data table whose id = "Subject_ID", "Activity", and the rest of teh columns are variables
+7. In order to calculate the average of each activity for each Subject_ID, we use melt to form a long data table whose id = "Subject_ID", "Activity", and the rest of the columns are variables
 
 8. We then use dcast to bring the long data table back to the usual form along with calculating the average of each variable for each activity and each subject.
 
