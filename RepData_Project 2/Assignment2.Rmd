@@ -1,7 +1,7 @@
 ##Assignment for analyzing Storm Data for Damages 
 
 ###Synopsis  
-This is a Markdown file for the assignment 2 for Reproducible Research on Coursera. In this project, we analyze the storm data to extract the top event type that is the most harmful for the population health (question 1) and causing the most economic damage (question2)
+This is a Markdown file for the assignment 2 for Reproducible Research on Coursera. In this project, we analyze the storm data to extract the top event type that is the most harmful for the population health (question 1) and causing the most economic damage (question2). The data can be downlowded from "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2""
 
 ###Data Processing
 We now process the data. First we download the csv data from the coursera course website to the working directory. For starting analyzing the data, we first set the working directory and import the packages that I will use in analyzing the data.
