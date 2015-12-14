@@ -1,0 +1,7 @@
+name: Publish Document
+account: rpubs
+server: rpubs.com
+bundleId:
+        https://api.rpubs.com/api/v1/document/114167/42aa3ed30af64d1b92eac395c22d5539
+url: http://rpubs.com/hsinhua/114167
+when: 1448079431.66899

@@ -1,0 +1,123 @@
+##Assignment for analyzing Storm Data for Damages 
+
+###Synopsis  
+This is a Markdown file for the assignment 2 for Reproducible Research on Coursera. In this project, we analyze the storm data to extract the top event type that is the most harmful for the population health (question 1) and causing the most economic damage (question2)
+
+###Data Processing
+We now process the data. First we download the csv data from the coursera course website to the working directory. For starting analyzing the data, we first set the working directory and import the packages that I will use in analyzing the data.
+```{r, echo = TRUE}
+setwd("/Users/hsinhua/Desktop/Coursera/Reproducible Research/Project 2")
+library(ggplot2)
+library(plyr)
+library(dplyr)
+```
+We now import the csv data.
+```{r,echo = TRUE}
+## import the data
+data <- read.csv("repdata-data-StormData.csv")
+```
+
+We now select the subdata columns including FATALITIES, INJURIES, and EVTYPES and use aggregate function to give the data frame giving the total number of FATALITIES or INJURIES for each EVTYPE.
+
+```{r, echo = TRUE}
+## select out the subdata we need including Fatalities and injuries
+fat_subdata <- aggregate(FATALITIES  ~ EVTYPE, data = data, sum)
+fat_subdata <- fat_subdata[order(fat_subdata$FATALITIES, decreasing = T),]
+fat_subdata <- fat_subdata[1:5,]
+inj_subdata <- aggregate(INJURIES  ~ EVTYPE, data = data, sum)
+inj_subdata <- inj_subdata[order(inj_subdata$INJURIES, decreasing =T ),]
+inj_subdata <- inj_subdata[1:5,]
+```
+
+Now the fat_subdata and inj_subdata give the first five events causing the most numbers of fatalities and injuries. We will give the results next section.  
+
+We now continue to analyze the data for answering the second question.In order to answer the second question. We extract the event types causing the most damages to properties and crops
+
+```{r, echo=TRUE}
+## select out the subdata we need
+Ecodata <- select(data, EVTYPE, PROPDMG:CROPDMGEXP)
+
+## focus on the property damage data first
+Propdata <- select(Ecodata, EVTYPE:PROPDMGEXP)
+```
+
+Now sinve the the units for record the damages are different, i.e. K = 1e3, m/M = 1e6, B = 1e9, and otheres I don't find definitions are set to be 1, it is necessary to transform the data to measure the economic damage in the same unit. I below choose to measure everythin in million dollars (in unit of 1e6) and then I use aggregate function to find the total ecnonomic lost for each EVTYPE.
+
+```{r, echo = TRUE}
+## extract out the exp data. K = 1e3, m/M = 1e6, B = 1e9. Others undefined 
+## so I treat them as 1
+expdata <- Propdata$PROPDMGEXP
+expdata <- as.character(expdata)
+good <- expdata %in% "K"
+expdata[good] <- 1e3
+good <- expdata %in% "M"
+expdata[good] <- 1e6
+good <- expdata %in% "m"
+expdata[good] <- 1e6
+good <- expdata %in% "B"
+expdata[good] <-1e9
+tmp <- c(1000,1e6, 1e9)
+bad <- !expdata %in% tmp
+expdata[bad] <-1
+expdata <- as.numeric(expdata)
+
+## I choose to measure everything in million dollars
+propdamage <- Propdata$PROPDMG*expdata*1e-6
+Propdata <- mutate(Propdata, PropDmg = propdamage)
+prop_data <- aggregate(PropDmg ~ EVTYPE, data = Propdata, sum)
+prop_data <- arrange(prop_data, desc(PropDmg))
+
+
+## Now let's focus on the crop damage data
+## Redo every step as above
+Cropdata <- select(Ecodata, EVTYPE, CROPDMG, CROPDMGEXP)
+expcrop <- Cropdata$CROPDMGEXP
+expcrop <- as.character(expcrop)
+good <- expcrop %in% "K"
+expcrop[good] <- 1e3
+good <- expcrop %in% "M"
+expcrop[good] <- 1e6
+good <- expcrop %in% "m"
+expcrop[good] <- 1e6
+good <- expdata %in% "B"
+expcrop[good] <-1e9
+tmp <- c(1000,1e6, 1e9)
+bad <- !expcrop %in% tmp
+expcrop[bad] <-1
+expcrop <- as.numeric(expcrop)
+cropdamage <- Cropdata$CROPDMG*expcrop*1e-6
+Cropdata <- mutate(Cropdata, CropDmg = cropdamage)
+crop_data <- aggregate(CropDmg ~ EVTYPE, data = Cropdata, sum)
+crop_data <- arrange(crop_data, desc(CropDmg))
+
+#Let's extract the "total" damage including both property and crop damages
+prop_data <- aggregate(PropDmg ~ EVTYPE, data = Propdata, sum)
+crop_data <- aggregate(CropDmg ~ EVTYPE, data = Cropdata, sum)
+eco_dmg <- arrange(join(prop_data, crop_data),EVTYPE)
+eco_dmg <- mutate(eco_dmg, EcoDmg = PropDmg + CropDmg)
+eco_dmg <- select(eco_dmg, EVTYPE, EcoDmg)
+eco_dmg <- arrange(eco_dmg, desc(EcoDmg))
+eco_dmg <- eco_dmg[1:5,]
+```
+
+Now the data eco_dmg gives the first five events causing the economic damage including both the property and crop damages. Below we will show the plots and results.
+
+###Results  
+###Results for the question 1  
+We now use ggplot to show the first five events types causing the most fatalities and the most injuries
+
+```{r, echo = TRUE}
+ggplot(fat_subdata, aes(EVTYPE, FATALITIES, fill = EVTYPE)) + geom_bar(stat = "identity", position="dodge") + ylab("Fatalities") + xlab("Event type") + ggtitle("First Five Events Types Causing the Most Fatalities")
+
+ggplot(inj_subdata, aes(EVTYPE, INJURIES, fill = EVTYPE)) + geom_bar(stat = "identity",position="dodge") + ylab("Injuries") + xlab("Event type") + ggtitle("First Five Events Types Causing the Most Injuries")
+```
+
+Therefore, we know the answer for the first question should be "Tornado".
+
+###Results for the question 2    
+```{r, echo = TRUE}
+## make the plot of total economic damage
+ggplot(eco_dmg, aes(EVTYPE, EcoDmg, fill = EVTYPE)) + geom_bar(stat = "identity", position="dodge") + ylab("Economy_Dmg(Million Dollars") + xlab("Event type") + ggtitle("Top 5 Event Types Causing the Most Economy Damage")
+```
+
+Therefore, we know the answer for the question two should be "Flood".
