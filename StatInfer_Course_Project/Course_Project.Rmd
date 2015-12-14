@@ -1,3 +1,6 @@
+---
+output: pdf_document
+---
 ## Course Project for Statistical Inference 
 
 ### Overvie
