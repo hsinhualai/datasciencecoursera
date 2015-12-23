@@ -1,3 +1,6 @@
+---
+output: pdf_document
+---
 ## Course Project for Statistical Inference by Hsin-Hua Lai
 ## Analysis of the ToothGrowth data in the R datasets package
 
@@ -92,7 +95,7 @@ Again we see that at dose 1 mg, the t confidence interval is still completely ab
 
 ##### **(2) 2 mg**
 ```{r, message = FALSE}
-## With Sumdata above, let's first select out dose = 2 mg subdata
+## With sumdata above, let's first select out dose = 2 mg subdata
 row2 <- which(sumdata$dose == 2)
 subdata2 <- sumdata[row2,]
 
