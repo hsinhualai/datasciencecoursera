@@ -81,7 +81,7 @@ print(modrpart$finalModel)
 
 ## Plot the classification tree
 plot(modrpart$finalModel, uniform = TRUE, main = "Classification Tree")
-text(modrpart$finalModel, use.n = TRUE, all = TRUE, cex = 0.8)
+text(modrpart$finalModel, use.n = TRUE, all = FALSE, cex = 0.8)
 ```
 
 ```{r, echo = FALSE, message = FALSE}
