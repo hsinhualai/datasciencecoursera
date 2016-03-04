@@ -1,0 +1,2 @@
+## Prediction Assignment for Practical Machine Learning Class on Coursera
+In this project, we use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants, obtained from http://groupware.les.inf.puc-rio.br/har, to predict the manner in which they did the exercise. We first build models based on the training data and use the prediction model to predict 20 different test cases.
