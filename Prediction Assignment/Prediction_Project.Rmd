@@ -1,0 +1,135 @@
+---
+title: "Prediction Assignment for Practical Machine Learning Coursera"
+author: "Hsin-Hua Lai"
+---
+## Github address: 
+## Overview
+In this project, we use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants, obtained from http://groupware.les.inf.puc-rio.br/har, to predict the manner in which they did the exercise. We first build models based on the training data and use the prediction model to predict 20 different test cases.
+
+## Data Cleaning 
+Before building the predicted models, we first clean the raw training data to eliminate as many predicting variables as possible.
+```{r, message = FALSE}
+## We first set the working repository which contains the raw data files
+setwd("/Users/hsinhua/datasciencecoursera/Prediction Assignment")
+
+## First let's import the raw train and test data use read.csv 
+rawdata_train = read.csv("training.csv",  na.strings = c("","NA", "NULL"))
+rawdata_test = read.csv("testing.csv", na.strings = c("","NA", "NULL"))
+
+## Check the dims of the data
+dim(rawdata_train)
+dim(rawdata_test)
+
+## Let us import the packages that we will use in this project
+library(caret)
+library(dplyr)
+library(gbm)
+library(randomForest)
+```
+
+If we check the data, we find that lots of the columns contain too many NAs, NULLs, or simply are blank. We can not simply remove the incomplete data rows by using the 'complete.cases' command. For example we can first check the percents of the number of NAs in each column using the colSum command
+```{r, message = FALSE}
+napercent <- colSums(is.na(rawdata_train))/nrow(rawdata_train)
+```
+We do not print the result but we note that lots of columns contain 98% of NAs. Since the ratios of NAs are so high, we conclude the those variables are invalid and we eliminate those columns. 
+```{r, message = FALSE}
+process_train <- rawdata_train[,colSums(is.na(rawdata_train)) == 0]
+```
+
+Next, let us remove some dummy observables which obviously can not be treated as predictors in regression model, such as "X", "user_name", "raw_timestamp_part_1", "raw_timestamp_part_2", "cvtd_timestamp", "new_window", and "num_window".
+```{r,message = FALSE}
+process2_train <- process_train[,8:length(process_train[1,])]
+```
+
+We now check if there are predictors that are near zero variance predictors, which need to be removed since they can not be used as predictors.
+```{r,message = FALSE}
+## We first check which column the zero variance predictor is and
+## then remove it
+col_nnzv <-  which(nearZeroVar(process2_train, saveMetrics = TRUE)$nzv == FALSE)
+process3_train <- process2_train[,col_nnzv]
+```
+
+For building models with as fewer predictors as possible, we need to remove the one of the pair variables with very high correlations (greater than 0.9 in this project)
+```{r,message = FALSE}
+## We first calculate the correlations between each pair of numeric variables
+corrM <- cor(process3_train[,sapply(process3_train, is.numeric)])
+## Get the variables with high correlations
+highcorrvb <- findCorrelation(corrM, cutoff = .9, verbose = TRUE)
+## Now we remove those variables with very high correlations
+process4_train <- process3_train[,-highcorrvb]
+```
+
+## Building prediction models
+Now we split the clean data into training and testing for cross validations.
+```{r}
+inTrain <- createDataPartition(process4_train$classe, p = 3/4, list = FALSE)
+training <- process4_train[inTrain,]
+testing <- process4_train[-inTrain,]
+```
+
+### Classification Tree Model
+We can now build the models below. We first build the classification tree using method rpart in caret package
+```{r, message = FALSE}
+## We use the caret package with method being rpart
+modrpart <- train(classe ~., method = "rpart", data = training)
+
+## Print out the final Model
+print(modrpart$finalModel)
+
+## Plot the classification tree
+plot(modrpart$finalModel, uniform = TRUE, main = "Classification Tree")
+text(modrpart$finalModel, use.n = TRUE, all = TRUE, cex = 0.8)
+```
+
+```{r, echo = FALSE, message = FALSE}
+predrpart <- predict(modrpart, testing)
+accrpart <- confusionMatrix(testing$classe, predrpart)$overall['Accuracy']
+```
+
+We check that he accuracy is `r accrpart`, which is very bad.
+
+### Generalized Boosted Regreesion Model
+Below we try the Generalized Boosted Regression Model (gbm). We do not use the caret package below since it is way too slow.
+```{r, message = FALSE}
+## We do not use the caret package here since it is way too slow
+modgbm <- gbm(classe ~., data = training, distribution = "multinomial", n.trees = 200, interaction.depth = 4, shrinkage = 0.005)
+
+## Prediction using the gbm model
+predgbm <- predict(modgbm, n.trees = 200, newdata= testing, type = 'response')
+## The predict returns back the probability for each classe
+## Below for each row we pick the one with largest probability
+maxpredgbm <- apply(predgbm, 1, which.max)
+
+## Since 1~5 means A ~ E, we rename them below
+maxpredgbm[which(maxpredgbm == 1)] <- "A"
+maxpredgbm[which(maxpredgbm == 2)] <- "B"
+maxpredgbm[which(maxpredgbm == 3)] <- "C"
+maxpredgbm[which(maxpredgbm == 4)] <- "D"
+maxpredgbm[which(maxpredgbm == 5)] <- "E"
+maxpredgbm <- as.factor(maxpredgbm)
+```
+
+```{r, echo = FALSE, message = FALSE}
+accgbm <- confusionMatrix(testing$classe, maxpredgbm)$overall['Accuracy']
+```
+The accuracy is `r accgbm`, which is slightly better than that of classification tree above using caret package.
+
+### Random Forest
+We below try the random forest model. We again do not use the caret package since it takes forever.
+```{r, message = FALSE}
+## We again do not use caret package since it takes forever
+modrf <- randomForest(classe~., data = training, ntree=100, importance=TRUE, prox = TRUE)
+
+predrf <- predict(modrf, testing)
+```
+
+```{r, echo = FALSE, message = FALSE}
+accrf<- confusionMatrix(testing$classe, predrf)$overall['Accuracy']
+```
+The accuracy is `r accrf`, which is much better than the classification tree model and the generalized boosted model above. According to all the prediction performance above, we use the random forest model to predict 20 different test cases. 
+
+### Prediction based on the Random Forest Model
+```{r, echo = FALSE, message = FALSE}
+performance <- predict(modrf, rawdata_test)
+```
+The predictions for the 20 different test are `r performance`.
