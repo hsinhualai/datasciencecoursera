@@ -1,7 +1,7 @@
 ---
 title: "Prediction Assignment for Practical Machine Learning Coursera"
 author: "Hsin-Hua Lai"
-output: html_document
+output: pdf_document
 ---
 ### Github address:
 https://github.com/hsinhualai/datasciencecoursera/tree/master/Prediction%20Assignment
@@ -49,15 +49,18 @@ We now check if there are predictors that are near zero variance predictors, whi
 ## We first check which column the zero variance predictor is and
 ## then remove it
 col_nnzv <-  which(nearZeroVar(process2_train, saveMetrics = TRUE)$nzv == FALSE)
+
 process3_train <- process2_train[,col_nnzv]
 ```
 
-For building models with as fewer predictors as possible, we need to remove the one of the pair variables with very high correlations (greater than 0.9 in this project)
+For building models with as fewer predictors as possible, we need to remove the one of the pair variables with very high correlations (greater than 0.9 in this project). Here we use the findCorrelation command in caret package to accomplish this. There are other packages we can use, such as leap and genetic commands in the subselect package, to accomplish the same job.
 ```{r,message = FALSE}
 ## We first calculate the correlations between each pair of numeric variables
 corrM <- cor(process3_train[,sapply(process3_train, is.numeric)])
+
 ## Get the variables with high correlations
 highcorrvb <- findCorrelation(corrM, cutoff = .9, verbose = TRUE)
+
 ## Now we remove those variables with very high correlations
 process4_train <- process3_train[,-highcorrvb]
 ```
@@ -86,6 +89,7 @@ text(modrpart$finalModel, use.n = TRUE, all = FALSE, cex = 0.8)
 
 ```{r, echo = FALSE, message = FALSE}
 predrpart <- predict(modrpart, testing)
+
 accrpart <- confusionMatrix(testing$classe, predrpart)$overall['Accuracy']
 ```
 
@@ -95,10 +99,12 @@ We check that he accuracy is `r accrpart`, which is very bad.
 Below we try the Generalized Boosted Regression Model (gbm). We do not use the caret package below since it is way too slow.
 ```{r, message = FALSE}
 ## We do not use the caret package here since it is way too slow
-modgbm <- gbm(classe ~., data = training, distribution = "multinomial", n.trees = 200, interaction.depth = 4, shrinkage = 0.005)
+modgbm <- gbm(classe ~., data = training, distribution = "multinomial",
+              n.trees = 200, interaction.depth = 4, shrinkage = 0.005)
 
 ## Prediction using the gbm model
 predgbm <- predict(modgbm, n.trees = 200, newdata= testing, type = 'response')
+
 ## The predict returns back the probability for each classe
 ## Below for each row we pick the one with largest probability
 maxpredgbm <- apply(predgbm, 1, which.max)
