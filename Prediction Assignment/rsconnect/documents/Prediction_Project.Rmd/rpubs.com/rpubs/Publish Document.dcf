@@ -3,6 +3,5 @@ account: rpubs
 server: rpubs.com
 bundleId:
         https://api.rpubs.com/api/v1/document/158297/388da25647c64795b75ba0f0ed6d7d67
-url:
-        http://rpubs.com/publish/claim/158297/b1ebbeb5a73643c9b31611b9f5b476e6
-when: 1457074904.79595
+url: http://rpubs.com/hsinhua/158297
+when: 1457194974.55106

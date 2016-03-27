@@ -1,7 +1,7 @@
 ---
 title: "Prediction Assignment for Practical Machine Learning Coursera"
 author: "Hsin-Hua Lai"
-output: pdf_document
+output: html_document
 ---
 ### Github address:
 https://github.com/hsinhualai/datasciencecoursera/tree/master/Prediction%20Assignment
