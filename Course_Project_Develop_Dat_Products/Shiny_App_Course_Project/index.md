@@ -13,7 +13,11 @@ knit        : slidify::knit2slides
 
 ## Proof of Central Limit Theorem 
 The Shiny App is at: https://hsinhualai.shinyapps.io/Course_Project_Develop_Dat_Products/
-The Presentation is at: http://rpubs.com/hsinhua/170906
+
+The Presentation is at: http://rpubs.com/hsinhua/http://rpubs.com/hsinhua/170919
+
+R codes can be found in my github:
+https://github.com/hsinhualai/datasciencecoursera/tree/master/Course_Project_Develop_Dat_Products/Shiny_App_Course_Project
 
 In this Course Project, we develop a Shiny app for numerically proving the Central Limit Theorem (CLT). CLT in a nutshell states that the sampling distribution of the mean of any independent, random variable will be normal or nearly normal, if the sample size is large enough. We choose three sampling distributions, 1. Exponential Distribution, 2. Poisson Distribution and 3. Uniform Distribution
 
