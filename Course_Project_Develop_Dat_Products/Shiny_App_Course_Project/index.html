@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Presentation for Course Project in Developing Data Products</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Presentation for Course Project in Developing Data Products">
+  <meta name="author" content="Hsin-Hua Lai">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Presentation for Course Project in Developing Data Products</h1>
+    <h2>Numerical Proof of Central Limit Theorem</h2>
+    <p>Hsin-Hua Lai<br/>Not a simple guy</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Proof of Central Limit Theorem</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The Shiny App is at: <a href="https://hsinhualai.shinyapps.io/Course_Project_Develop_Dat_Products/">https://hsinhualai.shinyapps.io/Course_Project_Develop_Dat_Products/</a>
+The Presentation is at: <a href="http://rpubs.com/hsinhua/170906">http://rpubs.com/hsinhua/170906</a></p>
+
+<p>In this Course Project, we develop a Shiny app for numerically proving the Central Limit Theorem (CLT). CLT in a nutshell states that the sampling distribution of the mean of any independent, random variable will be normal or nearly normal, if the sample size is large enough. We choose three sampling distributions, 1. Exponential Distribution, 2. Poisson Distribution and 3. Uniform Distribution</p>
+
+<p>During the simulations, we first generate 40 values out of random distribution functions and obtain the mean value. We then repeat doing this. In the shiny app, the slider gives the number of iterations ranging from 1 to 10000. We can see that all the sampling distribution of the mean values become normal. In the three slides later, I will introduce in order the Exponential Distribution, Poisson Distribution, and Uniform Distribution, and how to extract the theoretical mean and variance of the final normal distribution for a proof of CLT. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Exponential Distribution and Poisson Distribution</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>Exponential Distribution: The probability density function of an exponential distribution is \[f(n,\lambda)=\lambda e^{-\lambda n},\] where the \(\lambda\) is the rate and the \(n\) is the number of observation. The sampling distribution of the mean of the values should approach normal with mean \(\lambda^{-1}=5\) and variance \(\frac{\lambda^{-2}}{n}=0.625\), where we choose \(\lambda = 0.2\) and \(n=40\). </p></li>
+<li><p>Poisson Distribution: For an event occurring in integer times,i.e., 0, 1, 2..., in an interval. The average number of events in an interval is designated  \(\lambda\), where \(\lambda\) is the event rate, which represent the average number of events per interval.The probability of observing \(n\) events in an interval is given by the Poisson distribution, \[ f(n,\lambda) = \frac{\lambda^n e^{-\lambda}}{k!}.\] For the Poisson distribution, the \(\lambda\) is equal to the expectation value of \(x\) and also its variance, \(\lambda = E(x) = var(x)\). The sampling distribution of the mean of the values should approach normal with mean \(\lambda = 0.2\) and variance \(\frac{\lambda}{n}=0.005\), where \(\lambda = 0.2\) and \(n=40\). </p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Uniform Distribution to CLT</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>A uniform distribution is a distribution that has constant probability. The probability density function on the interval \([a,b]\) are defined as \[ P(x)=
+\frac{1}{b-a}~~for~a \leq x \leq b.\] In the usual situation as in the app for the course project, we choose \([a,b]=[0,1]\). The mean and the variance of the uniform distribution is straightforward to obtian, which are \(E[x] =0.5\) and \(var[x]=\frac{(b-a)^2}{12}=\frac{1}{12}\). If we sample the mean of the values generated from the random uniform distribution, the distribution will approach nomal with mean \(E[\bar{x}]=0.5\) and the variance \(var[\bar{x}] = \frac{var[x]}{n}=\frac{1}{48}\simeq 0.00208\).</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Illustration of the plot in the Shiny App</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>For an illustration, we plot the mean value distribution randomly generated by the exponential distribution. The green curve is the normal distribution. The vertical blue line illustrates the mean value.</p>
+
+<p><img src="assets/fig/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Proof of Central Limit Theorem'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Exponential Distribution and Poisson Distribution'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Uniform Distribution to CLT'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Illustration of the plot in the Shiny App'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
