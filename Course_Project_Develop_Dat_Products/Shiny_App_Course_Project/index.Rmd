@@ -14,8 +14,6 @@ knit        : slidify::knit2slides
 ## Proof of Central Limit Theorem 
 The Shiny App is at: https://hsinhualai.shinyapps.io/Course_Project_Develop_Dat_Products/
 
-The Presentation is at: http://rpubs.com/hsinhua/170933
-
 R codes can be found in my github:
 https://github.com/hsinhualai/datasciencecoursera/tree/master/Course_Project_Develop_Dat_Products/Shiny_App_Course_Project
 

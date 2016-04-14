@@ -15,4 +15,4 @@ For the R codes for the Shiny app, please see ui.R and server.R files.
 
 The Shiny App is at: https://hsinhualai.shinyapps.io/Course_Project_Develop_Dat_Products/
 
-The Presentation is at: http://rpubs.com/hsinhua/170933
+The Presentation is at: http://rpubs.com/hsinhua/170937
