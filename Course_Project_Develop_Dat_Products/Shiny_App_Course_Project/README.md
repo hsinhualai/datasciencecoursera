@@ -9,6 +9,8 @@ In this Course Project, we develop a Shiny app for numerically proving the Centr
 
 During the simulations, we first generate 40 values out of random distribution functions and obtain the mean value. We then repeat doing this. In the shiny app, the slider gives the number of iterations ranging from 1 to 10000. We can see that all the sampling distribution of the mean values are normal. In the three slides later, I will introduce in order the Exponential Distribution, Poisson Distribution, and Uniform Distribution, and how to extract the theoretical mean and variance of the final normal distribution for a proof of CLT.
 
+For checking the slidify codes on github. Please see index.Rmd. For presentation slides please see index.md or go to the Rpubs website listed below. The Shiny App is on shinyapps.io website listed below.
+
 The Shiny App is at: https://hsinhualai.shinyapps.io/Course_Project_Develop_Dat_Products/
 
 The Presentation is at: http://rpubs.com/hsinhua/170919
