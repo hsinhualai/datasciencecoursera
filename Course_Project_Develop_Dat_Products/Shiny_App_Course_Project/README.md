@@ -11,6 +11,8 @@ During the simulations, we first generate 40 values out of random distribution f
 
 For checking the slidify codes on github. Please see index.Rmd. For presentation slides please see index.md or go to the Rpubs website listed below. The Shiny App is on shinyapps.io website listed below.
 
+For the R codes for the Shiny app, please see ui.R and server.R files.
+
 The Shiny App is at: https://hsinhualai.shinyapps.io/Course_Project_Develop_Dat_Products/
 
 The Presentation is at: http://rpubs.com/hsinhua/170919
