@@ -11,4 +11,4 @@ During the simulations, we first generate 40 values out of random distribution f
 
 The Shiny App is at: https://hsinhualai.shinyapps.io/Course_Project_Develop_Dat_Products/
 
-The Presentation is at: http://rpubs.com/hsinhua/170901
+The Presentation is at: http://rpubs.com/hsinhua/170906
