@@ -63,9 +63,8 @@ Shiny App and Future Plan
 
 - The Shiny App is on the shinyapp.io website: https://hsinhualai.shinyapps.io/Capstone_Project-Text_Prediction/
    - On the left panel, the users enter a partial sentence
-   - On the main panel, there will appear five words from left to right, ranked by probability
-   - The word on the left most is the most probable word
-   
+   - On the main panel, the app gives the first five the most probable words 
+
 - Future Plan
    - Try to build in higher n-grams with $~n>3$ for a better prediction app
    - Try to build in an algorithm which can learn from the Users' input to generalize the dictionary
