@@ -1,7 +1,7 @@
 Text Prediction Shiny Application
 ========================================================
 author: Hsin-Hua Lai
-date: May 26, 2016
+date: June 10, 2016
 width: 1440
 height: 900
 
@@ -38,11 +38,11 @@ Data
 - The en_US file folder contains three text files from blogs, news, and twitter. The more complete exploratory analysis is at https://rpubs.com/hsinhua/177290.
 
 - Preprocessing steps 
-  - Sample about 30%, 25%, and 20% from the blogs, news, and twitter text data
+  - Sample about 22%, 20%, and 10% from the blogs, news, and twitter text data
   - Convert characters to lower case and remove all bad words and non-alphabetic characters including numbers, punctuations
   - Extract unigrams, bigrams, and trigrams along with their frequencies
   - Use only 90% of the unigrams for efficiency and the corresponding bigrams and trigrams
-  - Eliminate all trigrams whose frequencies are one, which significantly reduces the trigram file size
+  - Eliminate all trigrams, quadgrams, and pentagrams whose frequencies are one, which significantly reduces the files' size.
 
 
 Prediction Algorithm
@@ -50,11 +50,11 @@ Prediction Algorithm
 
 - The approach is a Back-off model illustrated in the Natural Language Processing lectures, http://web.mit.edu/6.863/www/fall2012/lectures/lecture2&3-notes12.pdf 
 
-- The backoff smoother used do a weighted average between all trigrams, bigrams, and unigrams.
+- The backoff smoother used do a weighted average between all pentagrams, quadgrams, trigrams, bigrams, and unigrams.
 
-- For a partial sentence whose length is larger than three, the last two words will be used for next word prediction
-   - The last two words will be combined with any unigram to give a trigram, two bigrams, and three unigrams
-   - The built algorithm will search for built-in trigram, bigram, and unigram tables. 
+- For a partial sentence whose length is larger than four, the last four words will be used for next word prediction
+   - The last four words will be combined with any unigram to give a pentagram, two quadgrams, three trigrams, four bigrams, and five unigrams
+   - The built algorithm will search for built-in pentagram, quadgram, trigram, bigram, and unigram tables. 
    - If there is a match in higher n-grams, the weight contributed from higher n-grams is significantly larger
    - If there is no match in n-grams, it will back off to search (n-1)-grams tables and do weight average between (n-1)-grams down to unigrams
 
@@ -66,5 +66,5 @@ Shiny App and Future Plan
    - On the main panel, the app gives the first five the most probable words 
 
 - Future Plan
-   - Try to build in higher n-grams with $~n>3$ for a better prediction app
+   - Try to build in higher n-grams with $~n>5$ for a better prediction app
    - Try to build in an algorithm which can learn from the Users' input to generalize the dictionary

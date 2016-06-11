@@ -759,7 +759,7 @@ hljs.initHighlightingOnLoad();
   <div class="slides">
 
 <section data-state="section" data-transition="linear" data-transition-speed="default">
-<h1>Text Prediction Shiny Application</h1><p>Hsin-Hua Lai<br/>May 26, 2016</p>
+<h1>Text Prediction Shiny Application</h1><p>Hsin-Hua Lai<br/>June 10, 2016</p>
 
 <div class="slideContent" >
 <p><small> 
@@ -803,11 +803,11 @@ Coursera Data Science Specialization
 <li><p>Preprocessing steps </p>
 
 <ul>
-<li>Sample about 30%, 25%, and 20% from the blogs, news, and twitter text data</li>
+<li>Sample about 22%, 20%, and 10% from the blogs, news, and twitter text data</li>
 <li>Convert characters to lower case and remove all bad words and non-alphabetic characters including numbers, punctuations</li>
 <li>Extract unigrams, bigrams, and trigrams along with their frequencies</li>
 <li>Use only 90% of the unigrams for efficiency and the corresponding bigrams and trigrams</li>
-<li>Eliminate all trigrams whose frequencies are one, which significantly reduces the trigram file size</li>
+<li>Eliminate all trigrams, quadgrams, and pentagrams whose frequencies are one, which significantly reduces the files&#39; size.</li>
 </ul></li>
 </ul>
 
@@ -819,12 +819,12 @@ Coursera Data Science Specialization
 <div class="slideContent" >
 <ul>
 <li><p>The approach is a Back-off model illustrated in the Natural Language Processing lectures, <a href="http://web.mit.edu/6.863/www/fall2012/lectures/lecture2&amp;3-notes12.pdf">http://web.mit.edu/6.863/www/fall2012/lectures/lecture2&amp;3-notes12.pdf</a> </p></li>
-<li><p>The backoff smoother used do a weighted average between all trigrams, bigrams, and unigrams.</p></li>
-<li><p>For a partial sentence whose length is larger than three, the last two words will be used for next word prediction</p>
+<li><p>The backoff smoother used do a weighted average between all pentagrams, quadgrams, trigrams, bigrams, and unigrams.</p></li>
+<li><p>For a partial sentence whose length is larger than four, the last four words will be used for next word prediction</p>
 
 <ul>
-<li>The last two words will be combined with any unigram to give a trigram, two bigrams, and three unigrams</li>
-<li>The built algorithm will search for built-in trigram, bigram, and unigram tables. </li>
+<li>The last four words will be combined with any unigram to give a pentagram, two quadgrams, three trigrams, four bigrams, and five unigrams</li>
+<li>The built algorithm will search for built-in pentagram, quadgram, trigram, bigram, and unigram tables. </li>
 <li>If there is a match in higher n-grams, the weight contributed from higher n-grams is significantly larger</li>
 <li>If there is no match in n-grams, it will back off to search (n-1)-grams tables and do weight average between (n-1)-grams down to unigrams</li>
 </ul></li>
@@ -846,7 +846,7 @@ Coursera Data Science Specialization
 <li><p>Future Plan</p>
 
 <ul>
-<li>Try to build in higher n-grams with \( ~n>3 \) for a better prediction app</li>
+<li>Try to build in higher n-grams with \( ~n>5 \) for a better prediction app</li>
 <li>Try to build in an algorithm which can learn from the Users&#39; input to generalize the dictionary</li>
 </ul></li>
 </ul>

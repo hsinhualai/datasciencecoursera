@@ -13,4 +13,4 @@
 
 - The Shiny App is at: https://hsinhualai.shinyapps.io/Capstone_Project-Text_Prediction/
 
-- The folder, Capstone_  Slide _Deck, contains the R codes for making the slides. The Slide Deck Presentation is at: http://rpubs.com/hsinhua/184108
+- The folder, Capstone_  Slide _Deck, contains the R codes for making the slides. The Slide Deck Presentation is at: http://rpubs.com/hsinhua/188459
