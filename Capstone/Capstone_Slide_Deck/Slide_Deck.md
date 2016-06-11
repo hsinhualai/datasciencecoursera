@@ -40,9 +40,9 @@ Data
 - Preprocessing steps 
   - Sample about 22%, 20%, and 10% from the blogs, news, and twitter text data
   - Convert characters to lower case and remove all bad words and non-alphabetic characters including numbers, punctuations
-  - Extract unigrams, bigrams, and trigrams along with their frequencies
-  - Use only 90% of the unigrams for efficiency and the corresponding bigrams and trigrams
-  - Eliminate all trigrams, quadgrams, and pentagrams whose frequencies are one, which significantly reduces the files' size.
+  - Extract unigrams, bigrams, trigrams, quadgram, and pentagram along with their frequencies
+  - Use only 90% of the unigrams for efficiency and the corresponding bigrams, trigrams, quadgrams, and pentagrams
+  - Eliminate all trigrams, quadgrams, and pentagrams whose frequencies are one, which significantly reduces the files' size
 
 
 Prediction Algorithm
